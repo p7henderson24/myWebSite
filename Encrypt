@@ -1,0 +1,199 @@
+<html>
+<head>
+	<script language="javaScript">
+	
+	var alpha = [ "a", 
+	              "b",  
+	              "c",  
+	              "d",  
+	              "e",  
+	              "f",  
+				  "g",
+	              "h", 
+	              "i",  
+	              "j",  
+	              "k",  
+	              "l",  
+	              "m",  
+	              "n",  
+	              "o",  
+	              "p",  
+	              "q",  
+	              "r",  
+	              "s",  
+	              "t",  
+	              "u",  
+	              "v",  
+	              "w",  
+	              "x",  
+	              "y",  
+	              "z", 
+	              " "
+				];
+				
+	var scrambled = [ 
+	              "l",
+				  "d",
+				  "r",
+				  "i",
+				  "b",
+				  "s",
+				  "f",
+				  "n",
+				  "t",
+				  "a",
+				  "p",
+				  "u",
+				  "h",
+				  "x",
+				  "w",
+				  "g",
+				  "o",
+				  " ",
+				  "y",
+				  "m",
+				  "c",
+				  "q",
+				  "k",
+				  "v",
+				  "j",
+				  "e",
+	              "z"
+				];			
+
+	var numberList;
+	
+	function secretMessage()
+	{
+
+		if( document.getElementById("unencrypt").value == "" )// No data in the 1st box
+		{
+			if( document.getElementById("encrypt").value == "" )
+			{
+				alert("No data in either box");
+			}
+			else
+			{
+				decrypt();
+			}
+			
+		}
+		else // Data is in the uncrypted box
+		{
+			if( document.getElementById("encrypt").value == "" )
+			{
+				encrypt()
+			}
+			else
+			{
+				alert("Data in both. Please clear both boxes");
+			}
+		}
+    
+		/*
+		if( ( document.getElementById("unencrypt").value == "" ) && ( document.getElementById("encrypt").value == "" ) )
+		{
+			alert("Still no data in either box");
+		}
+		*/
+		
+	}
+	
+	function decrypt()
+	{
+		var firstBox = document.getElementById("encrypt").value
+		
+		numberList = new Array(firstBox.length)
+		
+		var counter = 0;
+		while( counter < firstBox.length )
+		{
+			
+			var let = firstBox.substr(counter,1);
+			var letIndex = scrambled.indexOf(let);
+			numberList[counter] = letIndex;
+			
+			
+			counter++;
+		}
+		alert(numberList);
+		counter = 0;
+		var answer = "";
+		while( counter < firstBox.length )
+		{
+			
+			var numListValue = numberList[counter];
+			answer = answer + alpha[numListValue];
+			
+			
+			counter++;
+		}
+		document.getElementById("unencrypt").value = answer;
+		alert(answer);
+		
+	}
+	
+	
+	function encrypt()
+	{
+		var firstBox = document.getElementById("unencrypt").value
+		
+		numberList = new Array(firstBox.length)
+		
+		var counter = 0;
+		while( counter < firstBox.length )
+		{
+			
+			var let = firstBox.substr(counter,1);
+			var letIndex = alpha.indexOf(let);
+			numberList[counter] = letIndex;
+			
+			
+			counter++;
+		}
+		alert(numberList);
+		counter = 0;
+		var answer = "";
+		while( counter < firstBox.length )
+		{
+			
+			var numListValue = numberList[counter];
+			answer = answer + scrambled[numListValue];
+			
+			counter++;
+		}
+		document.getElementById("encrypt").value = answer;
+		alert(answer);
+		
+	}
+	
+	function clearBoxes()
+	{
+		//alert("Clearing ");
+		// Insert Hello into either text box
+		document.getElementById("unencrypt").value = "";
+		// Insert World into the other text box
+		document.getElementById("encrypt").value = "";
+		
+	}
+	
+	
+	</script>
+</head>
+<body>
+	<center>
+		<h1>My Encryption App</h1>
+		<br/><br/>
+		<input type ="button" value="Encrypt" onClick="secretMessage()"/>
+		<input type ="button" value="Clear" onClick="clearBoxes()"/>
+		<br/><br/>
+		
+		Unencrypted Message
+		<input type = "text" size="40" id="unencrypt"/> 
+		
+		<br/><br/>
+		Encrypted Message
+		<input type = "text" size="40" id="encrypt"/> 
+	</center>
+</body>
+</html>
