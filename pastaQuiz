@@ -1,0 +1,210 @@
+<html>
+<head> 
+<script language = "javaScript">
+
+
+/* var pastaResult =  ["Penne", // You’re pretty basic. A staple, some would say. You’re dependable and charming: everyone wants to stock their kitchen cabinets full of you! ;)
+					"Rotini", // A free spirit, I see! Since your personality is full of spunk and fun, you never fail to make a meal interesting. 
+					"Fettuccine", // Is that fish I smell? Pair you, a classic, with a stinky, steaming pile of shrimp or salmon and you can’t go wrong. Remember to shower, my fettuccine friend.
+					"Angel hair", // How embarrassing. Despite wanting to appear deep, your angel hair personality holds nothing more than buttery mush and poorly picked parsley.
+					];
+*/
+				
+const questions = [
+	{
+				"question": "Do you prefer red, blue, green, or orange?",
+				"answer1": "Red",
+				"answer1Total": "1",
+				"answer2": "Blue",
+				"answer2Total": "2",
+				"answer3": "Green",
+				"answer3Total": "3",
+				"answer4": "Orange",
+				"answer4Total": "4"
+	},
+	{
+				"question": "Sushi, pizza, pasta, or burgers?"
+				"answer": "Sushi",
+				"answer1Total": "1",
+				"answer": "Pizza",
+				"answer2Total": "2",
+				"answer": "Pasta",
+				"answer3Total": "3",
+				"answer": "Burgers",
+				"answer4Total": "4"
+	},
+	{
+				"question": "Which pet: cat, dog, parrot, or fish?"
+				"answer": "A cat",
+				"answer1Total": "1",
+				"answer": "A dog",
+				"answer2Total": "2",
+				"answer": "a parrot",
+				"answer3Total": "3",
+				"answer": "Fish",
+				"answer4Total": "4"
+	},
+	{
+				"question": "Football, baseball, basketball, or volleyball?"
+				"answer": "Football",
+				"answer1Total": "1",
+				"answer": "Baseball",
+				"answer2Total": "2",
+				"answer": "Basketball",
+				"answer3Total": "3",
+				"answer": "Volleyball",
+				"answer4Total": "4"
+	}
+]
+
+let currentQuestion = 0;
+let score = [];
+let selectedAnswersData = [];
+const totalQuestions =questions.length;
+
+const container = document.querySelector('.quiz-container');
+const questionEl = document.querySelector('.question');
+const option1 = document.querySelector('.option1');
+const option2 = document.querySelector('.option2');
+const option3 = document.querySelector('.option3');
+const nextButton = document.querySelector('.next');
+const previousButton = document.querySelector('.previous');
+const restartButton = document.querySelector('.restart');
+const result = document.querySelector('.result');
+
+//Function to generate question 
+function generateQuestions (index) {
+    //Select each question by passing it a particular index
+    const question = questions[index];
+    const option1Total = questions[index].answer1Total;
+    const option2Total = questions[index].answer2Total;
+    const option3Total = questions[index].answer3Total;
+    //Populate html elements 
+    questionEl.innerHTML = `${index + 1}. ${question.question}`
+    option1.setAttribute('data-total', `${option1Total}`);
+    option2.setAttribute('data-total', `${option2Total}`);
+    option3.setAttribute('data-total', `${option3Total}`);
+    option1.innerHTML = `${question.answer1}`
+    option2.innerHTML = `${question.answer2}`
+    option3.innerHTML = `${question.answer3}`
+}
+
+
+function loadNextQuestion () {
+    const selectedOption = document.querySelector('input[type="button"]:checked');
+    //Check if there is a radio input checked
+    if(!selectedOption) {
+        alert('Please select your answer!');
+        return;
+    }
+    //Get value of selected radio
+    const answerScore = Number(selectedOption.nextElementSibling.getAttribute('data-total'));
+
+    ////Add the answer score to the score array
+    score.push(answerScore);
+
+    selectedAnswersData.push()
+    
+
+    const totalScore = score.reduce((total, currentNum) => total + currentNum);
+
+    //Finally we incement the current question number ( to be used as the index for each array)
+    currentQuestion++;
+
+        //once finished clear checked
+        selectedOption.checked = false;
+    //If quiz is on the final question
+    if(currentQuestion == totalQuestions - 1) {
+        nextButton.textContent = 'Finish';
+    }
+    //If the quiz is finished then we hide the questions container and show the results 
+    if(currentQuestion == totalQuestions) {
+        container.style.display = 'none';
+        result.innerHTML =
+         `<h1 class="final-score">Your score: ${totalScore}</h1>
+         <div class="summary">
+            <h1>Summary</h1>
+            <p>Possible - Personality Traits, see below for a summary based on your results:</p>
+            <p>15 - 21- You Need Help</p>
+            <p>10 - 15 - Good Soul</p>
+            <p>5 - 10 - Meh </p>
+            <p>5 - Are You Even Real</p>
+        </div>
+        <button class="restart">Restart Quiz</button>
+         `;
+        return;
+    }
+    generateQuestions(currentQuestion);
+}
+
+//Function to load previous question
+function loadPreviousQuestion() {
+    //Decrement quentions index
+    currentQuestion--;
+    //remove last array value;
+    score.pop();
+    //Generate the question
+    generateQuestions(currentQuestion);
+}
+
+//Fuction to reset and restart the quiz;
+function restartQuiz(e) {
+    if(e.target.matches('button')) {
+    //reset array index and score
+    currentQuestion = 0;
+    score = [];
+    //Reload quiz to the start
+    location.reload();
+    }
+
+}
+
+
+generateQuestions(currentQuestion);
+nextButton.addEventListener('click', loadNextQuestion);
+previousButton.addEventListener('click',loadPreviousQuestion);
+result.addEventListener('click',restartQuiz);
+
+ </script>
+ </head>
+
+<body bgcolor="FFCB8B">
+
+<font color="AE1400" face="Snap ITC"> 
+
+<center> 
+
+<br> <h1> Papa Penne's Pasta Quiz!</h1> 
+
+<body>
+
+    <div class="quiz-container">
+        <div id="question" class="question"></div>
+        <label class="option">
+            <input type="button" name="option" value="1" />
+            <span class="option1"></span>
+        </label>
+        <label class="option">
+            <input type="button" name="option" value="2" />
+            <span class="option2"></span>
+        </label>
+        <label class="option">
+            <input type="button" name="option" value="3" />
+            <span class="option3"></span>
+        </label>
+        <div class="controls">
+            <button class="previous">Previous</button>
+            <button class="next">Next</button>
+        </div>
+    </div>
+
+    <div class="result">
+
+    </div>
+
+<font color = "AE1400" face = "Georgia">
+
+<h5> By Ainsley Henderson. Thanks for playing!! :) </h5>
+
+</center>
+</body>
