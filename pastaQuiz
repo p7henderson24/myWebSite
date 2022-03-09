@@ -203,7 +203,7 @@ result.addEventListener('click',restartQuiz);
 		
         <div class="controls">
             <button class="previous">Previous</button>
-            <button class="next">Next</button>
+            <button class="next">Next</button> 
         </div>
     </div>
 
