@@ -10,7 +10,7 @@
 					];
 */
 				
-var qAndA = [
+var questions = [
 	{
 				"question": "Do you prefer red, blue, green, or orange?",
 				"answer1": "Red",
@@ -23,7 +23,7 @@ var qAndA = [
 				"answer4Total": "4"
 	},
 	{
-				"question": "Sushi, pizza, pasta, or burgers?"
+				"question": "Sushi, pizza, pasta, or burgers?",
 				"answer": "Sushi",
 				"answer1Total": "1",
 				"answer": "Pizza",
@@ -34,7 +34,7 @@ var qAndA = [
 				"answer4Total": "4"
 	},
 	{
-				"question": "Which pet: cat, dog, parrot, or fish?"
+				"question": "Which pet: cat, dog, parrot, or fish?",
 				"answer": "A cat",
 				"answer1Total": "1",
 				"answer": "A dog",
@@ -45,7 +45,7 @@ var qAndA = [
 				"answer4Total": "4"
 	},
 	{
-				"question": "Football, baseball, basketball, or volleyball?"
+				"question": "Football, baseball, basketball, or volleyball?",
 				"answer": "Football",
 				"answer1Total": "1",
 				"answer": "Baseball",
@@ -66,14 +66,13 @@ $ ("quiz-container").submit(function(e) {
 
 e.preventDefault();
 
-var a1 = document.getElementById('qAndA').value; /*
-
+var a1 = document.getElementById('qAndA').value; */
 
 
 let currentQuestion = 0;
 let score = [];
 let selectedAnswersData = [];
-const totalQuestions =questions.length;
+const totalQuestions = questions.length;
 
 const container = document.querySelector('.quiz-container');
 const questionEl = document.querySelector('.question');
@@ -85,13 +84,12 @@ const previousButton = document.querySelector('.previous');
 const restartButton = document.querySelector('.restart');
 const result = document.querySelector('.result');
 
-function generateQuestions (index) {
-    //Select each question by passing it a particular index
+function generateQuestions (index)
+{
     const question = questions[index];
     const option1Total = questions[index].answer1Total;
     const option2Total = questions[index].answer2Total;
     const option3Total = questions[index].answer3Total;
-    //Populate html elements 
     questionEl.innerHTML = `${index + 1}. ${question.question}`
     option1.setAttribute('data-total', `${option1Total}`);
     option2.setAttribute('data-total', `${option2Total}`);
@@ -101,10 +99,11 @@ function generateQuestions (index) {
     option3.innerHTML = `${question.answer3}`
 }
 
-function loadNextQuestion () {
+function loadNextQuestion () 
+{
     const selectedOption = document.querySelector('input[type="radio"]:checked');
-    //Check if there is a radio input checked
-    if(!selectedOption) {
+    if(!selectedOption) 
+	{
         alert('Please select your answer!');
         return;
     }
@@ -120,36 +119,41 @@ function loadNextQuestion () {
     currentQuestion++;
 
         selectedOption.checked = false;
-    if(currentQuestion == totalQuestions - 1) {
+    if(currentQuestion == totalQuestions - 1) 
+	{
         nextButton.textContent = 'Finish';
     }
-    if(currentQuestion == totalQuestions) {
+    if(currentQuestion == totalQuestions) 
+	/*{
         container.style.display = 'none';
         result.innerHTML =
-         `<h1 class="final-score">Your score: ${totalScore}</h1>
+         `<hl> class="final-score">Your score: ${totalScore}</h1>
          <div class="summary">
             <h1>Summary</h1>
             <p>Possible - Personality Traits, see below for a summary based on your results:</p>
-            <p>15 - 21- You Need Help</p>
-            <p>10 - 15 - Good Soul</p>
-            <p>5 - 10 - Meh </p>
-            <p>5 - Are You Even Real</p>
+            <p>15 - 21- Penne - You’re pretty basic. A staple, some would say. You’re dependable and charming: everyone wants to stock their kitchen cabinets full of you! ;) </p>
+            <p>10 - 15 - Rotini - A free spirit, I see! Since your personality is full of spunk and fun, you never fail to make a meal interesting. </p>
+            <p>5 - 10 - Fettuccine - Is that fish I smell? Pair you, a classic, with a stinky, steaming pile of shrimp or salmon and you can’t go wrong. Remember to shower, my fettuccine friend. </p>
+            <p>5 - Angel hair - How embarrassing. Despite wanting to appear deep, your angel hair personality holds nothing more than buttery mush and poorly picked parsley.</p>
         </div>
         <button class="restart">Restart Quiz</button>
          `;
         return;
-    }
+    } */
     generateQuestions(currentQuestion);
 }
 
-function loadPreviousQuestion() {
+function loadPreviousQuestion()
+{
     currentQuestion--;
     score.pop();
     generateQuestions(currentQuestion);
 }
 
-function restartQuiz(e) {
-    if(e.target.matches('button')) {
+function restartQuiz(e) 
+{
+    if(e.target.matches('button')) 
+	{
     currentQuestion = 0;
     score = [];
     location.reload();
@@ -165,7 +169,7 @@ result.addEventListener('click',restartQuiz);
 
 
 
-});
+
 
 
  </script>
@@ -180,8 +184,6 @@ result.addEventListener('click',restartQuiz);
 <br> <h1> Papa Penne's Pasta Quiz!</h1> 
 
 <body>
-
-//the 'div' tag defines a section in HTML
 
     <div class="quiz-container">
         <div id="question" class="question"></div>
@@ -203,7 +205,7 @@ result.addEventListener('click',restartQuiz);
 		
         <div class="controls">
             <button class="previous">Previous</button>
-            <button class="next">Next</button> 
+            <button class="next">Next</button>
         </div>
     </div>
 
@@ -213,7 +215,7 @@ result.addEventListener('click',restartQuiz);
 
 <font color = "AE1400" face = "Georgia">
 
-<h5> By Ainsley Henderson. Thanks for playing!! :) </h5>
+<h5> Thanks for playing!! :) </h5>
 
 </center>
 </body>
