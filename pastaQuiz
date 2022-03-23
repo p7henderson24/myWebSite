@@ -1,108 +1,113 @@
-<html>
-<head> 
-<script language = "javaScript">
-
 
 /* var pastaResult =  ["Penne", // You’re pretty basic. A staple, some would say. You’re dependable and charming: everyone wants to stock their kitchen cabinets full of you! ;)
 					"Rotini", // A free spirit, I see! Since your personality is full of spunk and fun, you never fail to make a meal interesting. 
 					"Fettuccine", // Is that fish I smell? Pair you, a classic, with a stinky, steaming pile of shrimp or salmon and you can’t go wrong. Remember to shower, my fettuccine friend.
 					"Angel hair", // How embarrassing. Despite wanting to appear deep, your angel hair personality holds nothing more than buttery mush and poorly picked parsley.
 					];
-*/
-				
-var questions = [
-	{
-				"question": "Do you prefer red, blue, green, or orange?",
-				"answer1": "Red",
-				"answer1Total": "1",
-				"answer2": "Blue",
-				"answer2Total": "2",
-				"answer3": "Green",
-				"answer3Total": "3",
-				"answer4": "Orange",
-				"answer4Total": "4"
-	},
-	{
-				"question": "Sushi, pizza, pasta, or burgers?",
-				"answer": "Sushi",
-				"answer1Total": "1",
-				"answer": "Pizza",
-				"answer2Total": "2",
-				"answer": "Pasta",
-				"answer3Total": "3",
-				"answer": "Burgers",
-				"answer4Total": "4"
-	},
-	{
-				"question": "Which pet: cat, dog, parrot, or fish?",
-				"answer": "A cat",
-				"answer1Total": "1",
-				"answer": "A dog",
-				"answer2Total": "2",
-				"answer": "a parrot",
-				"answer3Total": "3",
-				"answer": "Fish",
-				"answer4Total": "4"
-	},
-	{
-				"question": "Football, baseball, basketball, or volleyball?",
-				"answer": "Football",
-				"answer1Total": "1",
-				"answer": "Baseball",
-				"answer2Total": "2",
-				"answer": "Basketball",
-				"answer3Total": "3",
-				"answer": "Volleyball",
-				"answer4Total": "4"
-	}
-]
+<html>
+<head>
+
+<script language = "javaScript">
+
+	var pasta = [ ["Penne", "Red Sauce"],
+				["Rotini", "Red Sauce"],
+				["Tortelini", "Red Sauce" ],
+				[ "Ravioli", "Red Sauce"],
+				["Fettucine", "Pesto Sauce"],
+				["pasta", "Pesto Sauce"],
+				[ "pasta", "Pesto Sauce"],
+				["pasta", "Pesto Sauce"],
+				[ "pasta", "Butter and Cheese"],
+				[ "pasta", "Butter and Cheese"],
+				["pasta", "Butter and Cheese"],
+				["pasta", "Butter and Cheese"]
+						];
+						
 
 
+function saucePicker ()
+{
+	var select = document.getElementById ("pasta").value;
+	getToppingList(select);
+}
 
- </script>
- </head>
+function getToppingList(x)
+ {
 
-<body bgcolor="FFCB8B">
-
-<font color="AE1400" face="Snap ITC"> 
-
-<center> 
-
-<br> <h1> Papa Penne's Pasta Quiz!</h1> 
-
-<body>
-
-    <div class="quiz-container">
-        <div id="question" class="question"></div>
-        <label class="option">
-            <input type="button" name="option" value="1" />
-        </label>
-		
-        <label class="option">
-            <input type="button" name="option" value="2" />
-        </label>
-		
-        <label class="option">
-            <input type="button" name="option" value="3" />
-        </label>
+	var ToppingList = new Array (4);
+	var counter1 = 0;
+	var counter2 = 0;
 	
-	 <label class="option">
-            <input type="button" name="option" value="4" />
-        </label>
-		
-        <div class="controls">
-            <button class="previous">Previous</button>
-            <button class="next">Next</button>
-        </div>
-    </div>
+while (counter1  <pasta.length)
+	{
+		if (pasta[counter1][1] == x)
+		{
+		ToppingList[counter2] = pasta[counter1];
+		counter2++;
+		}
+		counter1++;
+	}
+	var v=0
+		while (v<ToppingList.length)
+		{
+		alert (ToppingList [v] [0]);
+		v++;
+		}
+}
+/*var sameGenre;
 
-    <div class="result">
+ /*function pickRandomAlbum()
+  {
+ rand=Math.random*
+  } 
+ function albumPicker()
+ { 
+  var genre = document.getElementById("Genre").value;
+	sameGenre = Genre;
+  var counter1 = 0;
+  var counter2 = 0; 
+  while ( counter1 <TaylorAlbums.length)
+	{
+		if (TaylorAlbums[counter1][1] == x)
+		{
+		genreList[counter2] = TaylorAlbums[counter1];
+		counter2++;
+		}
+		counter1++;
+	}
+	alert(sameGenre);
+	pickRandomAlbum(sameGenre);
+}
 
-    </div>
+	//var selection = document.getElementById("Genre").value;
+	//alert(selection)
+<select id = "Genre" onchange = "albumPicker()" > 
+*/ 
+</script>
+</head>
+<body bgcolor="#FFCB8B">
 
-<font color = "AE1400" face = "Georgia">
+<body> 
+<center>
+<font color="AE1400" face="Georgia">
+
+<h1>  Papa Penne's Pasta Quiz! </h1>
+
+<h5> Select a pasta topping from the drop-down menu to see wich pasta shape it pairs best with :)</h5>
+
+<select id = "pasta" onchange = "saucePicker()"> 
+	<option> ---Choose topping--- </option>
+	<option> Pesto </option>
+	<option> Red Sauce </option>
+	<option> Butter and cheese </option>
+	
+</select>
 
 <h5> Thanks for playing!! :) </h5>
 
 </center>
+
+
 </body>
+
+</html>
