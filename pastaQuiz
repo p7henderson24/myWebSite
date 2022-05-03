@@ -1,9 +1,3 @@
-
-/* var pastaResult =  ["Penne", // You’re pretty basic. A staple, some would say. You’re dependable and charming: everyone wants to stock their kitchen cabinets full of you! ;)
-					"Rotini", // A free spirit, I see! Since your personality is full of spunk and fun, you never fail to make a meal interesting. 
-					"Fettuccine", // Is that fish I smell? Pair you, a classic, with a stinky, steaming pile of shrimp or salmon and you can’t go wrong. Remember to shower, my fettuccine friend.
-					"Angel hair", // How embarrassing. Despite wanting to appear deep, your angel hair personality holds nothing more than buttery mush and poorly picked parsley.
-					];
 <html>
 <head>
 
@@ -14,13 +8,13 @@
 				["Tortelini", "Red Sauce" ],
 				[ "Ravioli", "Red Sauce"],
 				["Fettucine", "Pesto Sauce"],
-				["pasta", "Pesto Sauce"],
-				[ "pasta", "Pesto Sauce"],
-				["pasta", "Pesto Sauce"],
-				[ "pasta", "Butter and Cheese"],
-				[ "pasta", "Butter and Cheese"],
-				["pasta", "Butter and Cheese"],
-				["pasta", "Butter and Cheese"]
+				["Calamarata", "Pesto Sauce"],
+				[ "Cappelletti", "Pesto Sauce"],
+				["Pappardelle", "Pesto Sauce"],
+				[ "Mostaccioli", "Butter and Cheese"],
+				[ "Orecchiette", "Butter and Cheese"],
+				["Cavatelli", "Butter and Cheese"],
+				["Cavatappi", "Butter and Cheese"]
 						];
 						
 
@@ -31,7 +25,7 @@ function saucePicker ()
 	getToppingList(select);
 }
 
-function getToppingList(x)
+function getToppingList ()
  {
 
 	var ToppingList = new Array (4);
@@ -40,7 +34,7 @@ function getToppingList(x)
 	
 while (counter1  <pasta.length)
 	{
-		if (pasta[counter1][1] == x)
+		if (pasta[counter1][1] == turtlecat)
 		{
 		ToppingList[counter2] = pasta[counter1];
 		counter2++;
@@ -54,34 +48,34 @@ while (counter1  <pasta.length)
 		v++;
 		}
 }
-/*var sameGenre;
+/*var same;
 
- /*function pickRandomAlbum()
+ /*function pickRandomPasta()
   {
  rand=Math.random*
   } 
- function albumPicker()
+ function pastaPicker()
  { 
-  var genre = document.getElementById("Genre").value;
-	sameGenre = Genre;
+  var samepasta = document.getElementById("Pasta").value;
+	same = samePasta;
   var counter1 = 0;
   var counter2 = 0; 
-  while ( counter1 <TaylorAlbums.length)
+  while ( counter1 <pasta..length)
 	{
-		if (TaylorAlbums[counter1][1] == x)
+		if (pasta.[counter1][1] == x)
 		{
-		genreList[counter2] = TaylorAlbums[counter1];
+		pastaList[counter2] = pasta.[counter1];
 		counter2++;
 		}
 		counter1++;
 	}
-	alert(sameGenre);
-	pickRandomAlbum(sameGenre);
+	alert(samePasta);
+	pickRandomPasta(samePasta);
 }
 
-	//var selection = document.getElementById("Genre").value;
+	//var selection = document.getElementById("Pasta").value;
 	//alert(selection)
-<select id = "Genre" onchange = "albumPicker()" > 
+<select id = "Chose topping" onchange = "pastaPicker()" > 
 */ 
 </script>
 </head>
